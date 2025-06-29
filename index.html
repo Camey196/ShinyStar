@@ -2,239 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShinyStar Car Wash</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShinyStar Car Wash Booking</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
       background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      color: white;
-      animation: fadeIn 2s ease-in;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-
     header {
-      background-color: #111;
-      padding: 2em;
       text-align: center;
-      box-shadow: 0 0 20px #ff5252;
+      padding: 2rem 1rem 1rem;
+      animation: fadeInDown 1.2s ease forwards;
     }
-
-    h1 {
-      margin: 0;
-      font-size: 3em;
-      color: #ff1744;
-      text-shadow: 0 0 10px #ff1744;
+    header h1 {
+      color: #ff0000;
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #ff0000aa;
     }
-
-    .description {
-      text-align: center;
-      margin: 2em auto;
-      max-width: 700px;
-      font-size: 1.2em;
-      color: #ccc;
-    }
-
-    .calendar-container {
-      max-width: 800px;
+    header p {
+      max-width: 400px;
       margin: 0 auto;
-      padding: 2em;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff174433;
-      animation: fadeInUp 1s ease;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: #ff4444;
+      text-shadow: 0 0 6px #ff444488;
     }
-
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      margin-top: 1em;
-    }
-
-    .calendar div {
-      text-align: center;
-      padding: 1em;
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.3s;
-      box-shadow: 0 0 10px #ff174455;
-    }
-
-    .calendar div:hover {
-      background-color: #ff1744;
-      color: black;
-      transform: scale(1.05);
-    }
-
-    .calendar .disabled {
-      opacity: 0.3;
-      pointer-events: none;
-      background-color: #333;
-    }
-
-    .selected {
-      background-color: #ff1744 !important;
-      color: black !important;
-      font-weight: bold;
-    }
-
-    .booked {
-      background-color: #666;
-      pointer-events: none;
-      color: #ccc;
-      text-decoration: line-through;
-    }
-
-    .form-section {
-      margin-top: 2em;
-      text-align: center;
-    }
-
-    input, button {
-      margin: 1em;
-      padding: 0.7em 1.2em;
-      border-radius: 5px;
-      border: none;
-      font-size: 1em;
-    }
-
-    input {
-      background-color: #f1f1f1;
-      color: black;
-    }
-
-    button {
-      background-color: #ff5252;
-      color: black;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #c62828;
-    }
-
     .donate {
       text-align: center;
-      margin-top: 3em;
+      margin: 1.5rem 0 2rem;
+      animation: fadeInUp 1.2s ease forwards;
     }
-
     .donate a {
-      color: #ffca28;
       text-decoration: none;
-      font-size: 1.2em;
+      background: #ff0000;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0 0 10px #ff0000cc;
+      transition: background 0.3s ease;
+      display: inline-block;
+      font-size: 1.2rem;
     }
-
+    .donate a:hover {
+      background: #cc0000;
+      box-shadow: 0 0 15px #cc0000dd;
+    }
+    .calendly-container {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+      animation: fadeInUp 1.2s ease forwards;
+    }
+    /* Animations */
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
     footer {
       text-align: center;
-      padding: 1.5em;
-      background-color: #111;
-      margin-top: 3em;
-      color: #aaa;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      color: #555;
+      background: #111;
+      user-select: none;
     }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .donate a {
+        font-size: 1rem;
+        padding: 0.7rem 1.4rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>ShinyStar Car Wash</h1>
-  </header>
+<header>
+  <h1>ShinyStar Car Wash</h1>
+  <p>Professional car washing at just <strong>£10 per car</strong>. Book your slot easily below for up to 2 weeks in advance!</p>
+</header>
 
-  <p class="description">
-    Book a car wash for just <strong>£10</strong>! Choose any available date within the next 2 weeks.
-    Make your car shine like a supernova 🚗🔥
-  </p>
+<div class="donate">
+  <a href="https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener noreferrer">Donate to Support Us</a>
+</div>
 
-  <div class="calendar-container">
-    <h2 style="text-align: center;">📅 Select a Date</h2>
-    <div class="calendar" id="calendar"></div>
+<div class="calendly-container">
+  <!-- Calendly inline widget -->
+  <div class="calendly-inline-widget" data-url="https://calendly.com/cam-chattwood" style="min-width:320px; height:650px;"></div>
+</div>
 
-    <form action="https://formsubmit.co/cam.chattwood@gmail.com" method="POST">
-      <!-- Disable captcha (optional) -->
-      <input type="hidden" name="_captcha" value="false">
-      
-      <!-- Booking Form Fields -->
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <input type="text" name="address" placeholder="Your Address" required>
-      <input type="text" name="date" id="selectedDateInput" placeholder="Select Date" readonly required>
+<footer>
+  &copy; 2025 ShinyStar Car Wash. All rights reserved.
+</footer>
 
-      <!-- Submit Button -->
-      <button type="submit">Book Wash</button>
-    </form>
-
-    <div class="donate">
-      <p>Support our high-powered shine?</p>
-      <a href="https://www.paypal.com/donate" target="_blank">Donate 💖</a>
-    </div>
-  </div>
-
-  <footer>
-    &copy; 2025 ShinyStar Car Wash — All rights reserved.
-  </footer>
-
-  <script>
-    const calendarDiv = document.getElementById("calendar");
-    const today = new Date();
-    const selectedDate = { date: null };
-    const bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
-
-    function createCalendar() {
-      const current = new Date(today);
-      const dates = [];
-
-      // Generate 14 days
-      for (let i = 0; i < 14; i++) {
-        const d = new Date(current);
-        const dateStr = d.toDateString();
-        dates.push(dateStr);
-        current.setDate(current.getDate() + 1);
-      }
-
-      calendarDiv.innerHTML = dates.map(date => {
-        const isBooked = bookedSlots[date];
-        return `
-          <div onclick="selectDate(this)" data-date="${date}" class="${isBooked ? 'booked' : ''}">
-            ${date.split(' ')[0]}<br><small>${date.split(' ').slice(1).join(' ')}</small>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function selectDate(el) {
-      if (el.classList.contains('booked')) {
-        alert('This slot has already been booked.');
-        return;
-      }
-
-      document.querySelectorAll('.calendar div').forEach(e => e.classList.remove('selected'));
-      el.classList.add('selected');
-      selectedDate.date = el.getAttribute('data-date');
-      document.getElementById("selectedDateInput").value = selectedDate.date;
-
-      // Mark the slot as booked in localStorage
-      bookedSlots[selectedDate.date] = true;
-      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
-
-      // Re-render calendar to show updated state
-      createCalendar();
-    }
-
-    createCalendar();
-  </script>
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 </body>
 </html>
