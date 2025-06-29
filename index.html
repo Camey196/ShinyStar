@@ -2,138 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ShinyStar Car Wash Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShinyStar Car Wash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
     body {
       margin: 0;
+      font-family: 'Orbitron', sans-serif;
       background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
       color: white;
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
-      overflow-x: hidden;
+      animation: fadeIn 2s ease-in;
     }
 
     header {
+      background-color: #111;
+      padding: 2em;
       text-align: center;
-      animation: fadeInDown 1s ease forwards;
-      margin-bottom: 1rem;
+      box-shadow: 0 0 20px #ff5252;
     }
 
-    header h1 {
-      color: #ff0000;
-      font-size: 3rem;
-      letter-spacing: 3px;
-      text-shadow: 0 0 12px #ff0000bb;
-      margin: 0 0 0.2rem;
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      color: #ff1744;
+      text-shadow: 0 0 10px #ff1744;
     }
 
-    header p {
-      max-width: 450px;
+    .description {
+      text-align: center;
+      margin: 2em auto;
+      max-width: 700px;
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    .calendar-container {
+      max-width: 900px;
       margin: 0 auto;
-      font-size: 1.3rem;
-      color: #ff4444;
-      text-shadow: 0 0 6px #ff444499;
+      padding: 2em;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff174433;
+      animation: fadeInUp 1s ease;
+    }
+
+    .calendly-inline-widget {
+      width: 100%;
+      height: 700px;
+      border: none;
     }
 
     .donate {
-      margin: 1.5rem 0 2.5rem;
-      animation: fadeInUp 1.3s ease forwards;
+      text-align: center;
+      margin-top: 2em;
     }
 
     .donate a {
-      background: #ff0000;
-      padding: 12px 28px;
-      border-radius: 30px;
-      color: white;
-      font-weight: 700;
+      color: #ffca28;
       text-decoration: none;
-      box-shadow: 0 0 15px #ff0000cc;
-      transition: background-color 0.3s ease;
-      font-size: 1.2rem;
-      display: inline-block;
-    }
-
-    .donate a:hover {
-      background: #cc0000;
-      box-shadow: 0 0 20px #cc0000dd;
-    }
-
-    .calendly-wrapper {
-      width: 100%;
-      max-width: 900px;
-      height: 650px;
-      box-shadow: 0 0 30px #ff0000aa;
-      border-radius: 12px;
-      overflow: hidden;
-      animation: fadeInUp 1.5s ease forwards;
+      font-size: 1.2em;
     }
 
     footer {
-      margin-top: auto;
-      padding: 1rem 0;
-      color: #aa0000;
-      font-size: 0.9rem;
-      user-select: none;
       text-align: center;
+      padding: 1.5em;
+      background-color: #111;
+      margin-top: 3em;
+      color: #aaa;
     }
 
-    /* Animations */
-    @keyframes fadeInDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
     @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(30px);}
+      from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
-      header p {
-        font-size: 1.1rem;
-      }
-      .donate a {
-        font-size: 1rem;
-        padding: 10px 22px;
-      }
-      .calendly-wrapper {
-        height: 550px;
-      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>ShinyStar Car Wash</h1>
-  <p>Professional car washing for just <strong>£10 per car</strong>. Book your slot easily below, available up to 2 weeks in advance!</p>
-</header>
+  <header>
+    <h1>ShinyStar Car Wash</h1>
+  </header>
 
-<div class="donate">
-  <a href="https://www.paypal.com/donate/?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener noreferrer">Donate to Support Us</a>
-</div>
+  <p class="description">
+    Book a car wash for just <strong>£10</strong>! Choose any available date within the next 2 weeks.<br>
+    Make your car shine like a supernova 🚗✨
+  </p>
 
-<div class="calendly-wrapper">
-  <!-- Calendly inline widget -->
-  <div class="calendly-inline-widget" data-url="https://calendly.com/cam-chattwood" style="width:100%; height:100%;"></div>
-</div>
+  <div class="calendar-container">
+    <h2 style="text-align: center;">📅 Book Your Appointment</h2>
 
-<footer>
-  &copy; 2025 ShinyStar Car Wash. All rights reserved.
-</footer>
+    <!-- Calendly Embedded Booking Widget -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/cam-chattwood" style="min-width:320px;height:700px;"></div>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <div class="donate">
+      <p>Support our high-powered shine?</p>
+      <a href="https://www.paypal.com/donate" target="_blank">Donate 💖</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ShinyStar Car Wash — All rights reserved.
+  </footer>
 
 </body>
 </html>
