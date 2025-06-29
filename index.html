@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShinyStar Car Wash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: black url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      color: white;
+      animation: fadeIn 2s ease-in;
+    }
+
+    header {
+      background-color: #111;
+      padding: 2em;
+      text-align: center;
+      box-shadow: 0 0 20px #ff5252;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      color: #ff1744;
+      text-shadow: 0 0 10px #ff1744;
+    }
+
+    .description {
+      text-align: center;
+      margin: 2em auto;
+      max-width: 700px;
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    .calendar-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2em;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff174433;
+      animation: fadeInUp 1s ease;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      margin-top: 1em;
+    }
+
+    .calendar div {
+      text-align: center;
+      padding: 1em;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+      box-shadow: 0 0 10px #ff174455;
+    }
+
+    .calendar div:hover {
+      background-color: #ff1744;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .calendar .disabled {
+      opacity: 0.3;
+      pointer-events: none;
+      background-color: #333;
+    }
+
+    .selected {
+      background-color: #ff1744 !important;
+      color: black !important;
+      font-weight: bold;
+    }
+
+    .form-section {
+      margin-top: 2em;
+      text-align: center;
+    }
+
+    input, button {
+      margin: 1em;
+      padding: 0.7em 1.2em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    input {
+      background-color: #f1f1f1;
+      color: black;
+    }
+
+    button {
+      background-color: #ff5252;
+      color: black;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #c62828;
+    }
+
+    .donate {
+      text-align: center;
+      margin-top: 3em;
+    }
+
+    .donate a {
+      color: #ffca28;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5em;
+      background-color: #111;
+      margin-top: 3em;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>ShinyStar Car Wash</h1>
+  </header>
+
+  <p class="description">
+    Book a car wash for just <strong>£10</strong>! Choose any available date within the next 2 weeks.
+    Make your car shine like a supernova 🚗🔥
+  </p>
+
+  <div class="calendar-container">
+    <h2 style="text-align: center;">📅 Select a Date</h2>
+    <div class="calendar" id="calendar"></div>
+
+    <form action="https://formsubmit.co/cam.chattwood@gmail.com" method="POST">
+      <!-- Disable captcha (optional) -->
+      <input type="hidden" name="_captcha" value="false">
+      
+      <!-- Booking Form Fields -->
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="address" placeholder="Your Address" required>
+      <input type="text" name="date" id="selectedDateInput" placeholder="Select Date" readonly required>
+
+      <!-- Submit Button -->
+      <button type="submit">Book Wash</button>
+    </form>
+
+    <div class="donate">
+      <p>Support our high-powered shine?</p>
+      <a href="https://www.paypal.com/donate" target="_blank">Donate 💖</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 ShinyStar Car Wash — All rights reserved.
+  </footer>
+
+  <script>
+    const calendarDiv = document.getElementById("calendar");
+    const today = new Date();
+    const selectedDate = { date: null };
+
+    function createCalendar() {
+      const current = new Date(today);
+      const dates = [];
+
+      // Generate 14 days
+      for (let i = 0; i < 14; i++) {
+        const d = new Date(current);
+        const dateStr = d.toDateString();
+        dates.push(dateStr);
+        current.setDate(current.getDate() + 1);
+      }
+
+      calendarDiv.innerHTML = dates.map(date => `
+        <div onclick="selectDate(this)" data-date="${date}">${date.split(' ')[0]}<br><small>${date.split(' ').slice(1).join(' ')}</small></div>
+      `).join('');
+    }
+
+    function selectDate(el) {
+      document.querySelectorAll('.calendar div').forEach(e => e.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedDate.date = el.getAttribute('data-date');
+      document.getElementById("selectedDateInput").value = selectedDate.date;
+    }
+
+    createCalendar();
+  </script>
+
+</body>
+</html>
