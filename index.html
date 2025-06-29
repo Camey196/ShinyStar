@@ -46,32 +46,15 @@
       animation: fadeInUp 1s ease;
     }
 
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      margin-top: 1em;
-    }
-
-    .calendar div {
-      text-align: center;
-      padding: 1em;
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.3s;
-      box-shadow: 0 0 10px #ff174455;
-    }
-
-    .calendar div:hover {
-      background-color: #ff1744;
-      color: black;
-      transform: scale(1.05);
+    .calendly-inline-widget {
+      width: 100%;
+      height: 700px;
+      border: none;
     }
 
     .donate {
       text-align: center;
-      margin-top: 2.5em;
+      margin-top: 2em;
     }
 
     .donate a {
@@ -107,12 +90,15 @@
 
   <p class="description">
     Book a car wash for just <strong>£10</strong>! Choose any available date within the next 2 weeks.<br>
-    You’ll be redirected to a booking page with available times. 🚗✨
+    Make your car shine like a supernova 🚗✨
   </p>
 
   <div class="calendar-container">
-    <h2 style="text-align: center;">📅 Select a Date</h2>
-    <div class="calendar" id="calendar"></div>
+    <h2 style="text-align: center;">📅 Book Your Appointment</h2>
+
+    <!-- Calendly Embedded Booking Widget -->
+    <div class="calendly-inline-widget" data-url="https://calendly.com/cam-chattwood" style="min-width:320px;height:700px;"></div>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
     <div class="donate">
       <p>Support our high-powered shine?</p>
@@ -123,36 +109,6 @@
   <footer>
     &copy; 2025 ShinyStar Car Wash — All rights reserved.
   </footer>
-
-  <script>
-    const calendarDiv = document.getElementById("calendar");
-    const today = new Date();
-
-    function formatDateForCalendly(date) {
-      return date.toISOString().split('T')[0]; // e.g., 2025-07-01
-    }
-
-    function createCalendar() {
-      let html = "";
-      for (let i = 0; i < 14; i++) {
-        const d = new Date();
-        d.setDate(today.getDate() + i);
-        const dateStr = d.toDateString();
-        const shortDay = dateStr.split(' ')[0];
-        const rest = dateStr.split(' ').slice(1).join(' ');
-        const calendlyDate = formatDateForCalendly(d);
-
-        html += `
-          <div onclick="window.open('https://calendly.com/cam-chattwood/30min${calendlyDate}', '_blank')">
-            ${shortDay}<br><small>${rest}</small>
-          </div>
-        `;
-      }
-      calendarDiv.innerHTML = html;
-    }
-
-    createCalendar();
-  </script>
 
 </body>
 </html>
