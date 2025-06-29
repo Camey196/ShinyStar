@@ -81,6 +81,13 @@
       font-weight: bold;
     }
 
+    .booked {
+      background-color: #666;
+      pointer-events: none;
+      color: #ccc;
+      text-decoration: line-through;
+    }
+
     .form-section {
       margin-top: 2em;
       text-align: center;
@@ -183,6 +190,7 @@
     const calendarDiv = document.getElementById("calendar");
     const today = new Date();
     const selectedDate = { date: null };
+    const bookedSlots = JSON.parse(localStorage.getItem('bookedSlots')) || {};
 
     function createCalendar() {
       const current = new Date(today);
@@ -196,16 +204,33 @@
         current.setDate(current.getDate() + 1);
       }
 
-      calendarDiv.innerHTML = dates.map(date => `
-        <div onclick="selectDate(this)" data-date="${date}">${date.split(' ')[0]}<br><small>${date.split(' ').slice(1).join(' ')}</small></div>
-      `).join('');
+      calendarDiv.innerHTML = dates.map(date => {
+        const isBooked = bookedSlots[date];
+        return `
+          <div onclick="selectDate(this)" data-date="${date}" class="${isBooked ? 'booked' : ''}">
+            ${date.split(' ')[0]}<br><small>${date.split(' ').slice(1).join(' ')}</small>
+          </div>
+        `;
+      }).join('');
     }
 
     function selectDate(el) {
+      if (el.classList.contains('booked')) {
+        alert('This slot has already been booked.');
+        return;
+      }
+
       document.querySelectorAll('.calendar div').forEach(e => e.classList.remove('selected'));
       el.classList.add('selected');
       selectedDate.date = el.getAttribute('data-date');
       document.getElementById("selectedDateInput").value = selectedDate.date;
+
+      // Mark the slot as booked in localStorage
+      bookedSlots[selectedDate.date] = true;
+      localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
+
+      // Re-render calendar to show updated state
+      createCalendar();
     }
 
     createCalendar();
