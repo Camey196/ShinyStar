@@ -117,17 +117,6 @@
       background-color: #c62828;
     }
 
-    .donate {
-      text-align: center;
-      margin-top: 3em;
-    }
-
-    .donate a {
-      color: #ffca28;
-      text-decoration: none;
-      font-size: 1.2em;
-    }
-
     footer {
       text-align: center;
       padding: 1.5em;
@@ -163,23 +152,13 @@
     <div class="calendar" id="calendar"></div>
 
     <form action="https://formsubmit.co/cam.chattwood@gmail.com" method="POST">
-      <!-- Disable captcha (optional) -->
       <input type="hidden" name="_captcha" value="false">
-      
-      <!-- Booking Form Fields -->
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <input type="text" name="address" placeholder="Your Address" required>
       <input type="text" name="date" id="selectedDateInput" placeholder="Select Date" readonly required>
-
-      <!-- Submit Button -->
       <button type="submit">Book Wash</button>
     </form>
-
-    <div class="donate">
-      <p>Support our high-powered shine?</p>
-      <a href="https://www.paypal.com/donate" target="_blank">Donate 💖</a>
-    </div>
   </div>
 
   <footer>
@@ -196,7 +175,6 @@
       const current = new Date(today);
       const dates = [];
 
-      // Generate 14 days
       for (let i = 0; i < 14; i++) {
         const d = new Date(current);
         const dateStr = d.toDateString();
@@ -224,14 +202,19 @@
       el.classList.add('selected');
       selectedDate.date = el.getAttribute('data-date');
       document.getElementById("selectedDateInput").value = selectedDate.date;
+    }
 
-      // Mark the slot as booked in localStorage
+    document.querySelector("form").addEventListener("submit", function(e) {
+      if (!selectedDate.date) {
+        alert("Please select a date before booking.");
+        e.preventDefault();
+        return;
+      }
+
       bookedSlots[selectedDate.date] = true;
       localStorage.setItem('bookedSlots', JSON.stringify(bookedSlots));
-
-      // Re-render calendar to show updated state
       createCalendar();
-    }
+    });
 
     createCalendar();
   </script>
