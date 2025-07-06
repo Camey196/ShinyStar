@@ -108,15 +108,19 @@
       text-align: center;
     }
 
-    input, button {
+    input, select, button {
       margin: 1em;
       padding: 0.7em 1.2em;
       border-radius: 5px;
       border: none;
       font-size: 1em;
+      display: block;
+      width: 80%;
+      max-width: 400px;
+      box-sizing: border-box;
     }
 
-    input {
+    input, select {
       background-color: #f1f1f1;
       color: black;
     }
@@ -130,27 +134,6 @@
 
     button:hover {
       background-color: #c62828;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1em;
-      color: white;
-    }
-
-    th, td {
-      padding: 1em;
-      border-bottom: 1px solid #555;
-      text-align: left;
-    }
-
-    th {
-      background-color: #222;
-    }
-
-    tr:nth-child(even) {
-      background-color: #1a1a1a;
     }
 
     footer {
@@ -175,6 +158,7 @@
 <body>
 
   <header>
+    <!-- Logo Icon -->
     <img src="https://i.imgur.com/ZwqMV56.png" alt="Logo" class="logo-icon" />
     <h1>ShinyStar Car Wash</h1>
   </header>
@@ -194,42 +178,20 @@
       <input type="email" name="email" placeholder="Your Email" required>
       <input type="text" name="address" placeholder="Your Address" required>
       <input type="text" name="date" id="selectedDateInput" placeholder="Select Date" readonly required>
+
+      <!-- Service selection dropdown -->
+      <select name="service" required>
+        <option value="" disabled selected>Select a Service</option>
+        <option value="Basic Exterior Wash (£10)">Basic Exterior Wash (£10)</option>
+        <option value="Exterior + Wheels (£12)">Exterior + Wheels (£12)</option>
+        <option value="Full Wash (Exterior + Interior) (£15–£18)">Full Wash (Exterior + Interior) (£15–£18)</option>
+      </select>
+
       <button type="submit">Book Wash</button>
     </form>
   </div>
 
-  <!-- Services & Prices Section -->
-  <div class="calendar-container" style="margin-top: 3em;">
-    <h2 style="text-align: center;">🧼 Services & Prices</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>🚗 Service</th>
-          <th>💰 Price</th>
-          <th>📝 What's Included</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Basic Exterior Wash</td>
-          <td>£10</td>
-          <td>Pressure wash, soap, rinse, dry</td>
-        </tr>
-        <tr>
-          <td>Exterior + Wheels</td>
-          <td>£12</td>
-          <td>Basic wash + scrubbing wheels/tyres</td>
-        </tr>
-        <tr>
-          <td>Full Wash (Exterior + Interior)</td>
-          <td>£15–£18</td>
-          <td>Exterior wash + clean windows, dashboard wipe, floor mats</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Contact Info -->
+  <!-- Contact Information -->
   <div class="form-section">
     <h2>📞 Contact Information</h2>
     <p>Email: <a href="mailto:cam.chattwood@gmail.com" style="color: #ff5252;">cam.chattwood@gmail.com</a></p>
