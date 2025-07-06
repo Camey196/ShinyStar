@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -132,6 +132,27 @@
       background-color: #c62828;
     }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+      color: white;
+    }
+
+    th, td {
+      padding: 1em;
+      border-bottom: 1px solid #555;
+      text-align: left;
+    }
+
+    th {
+      background-color: #222;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+
     footer {
       text-align: center;
       padding: 1.5em;
@@ -154,7 +175,6 @@
 <body>
 
   <header>
-    <!-- Logo Icon -->
     <img src="https://i.imgur.com/ZwqMV56.png" alt="Logo" class="logo-icon" />
     <h1>ShinyStar Car Wash</h1>
   </header>
@@ -178,7 +198,38 @@
     </form>
   </div>
 
-  <!-- Contact Information -->
+  <!-- Services & Prices Section -->
+  <div class="calendar-container" style="margin-top: 3em;">
+    <h2 style="text-align: center;">🧼 Services & Prices</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>🚗 Service</th>
+          <th>💰 Price</th>
+          <th>📝 What's Included</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Basic Exterior Wash</td>
+          <td>£10</td>
+          <td>Pressure wash, soap, rinse, dry</td>
+        </tr>
+        <tr>
+          <td>Exterior + Wheels</td>
+          <td>£12</td>
+          <td>Basic wash + scrubbing wheels/tyres</td>
+        </tr>
+        <tr>
+          <td>Full Wash (Exterior + Interior)</td>
+          <td>£15–£18</td>
+          <td>Exterior wash + clean windows, dashboard wipe, floor mats</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Contact Info -->
   <div class="form-section">
     <h2>📞 Contact Information</h2>
     <p>Email: <a href="mailto:cam.chattwood@gmail.com" style="color: #ff5252;">cam.chattwood@gmail.com</a></p>
